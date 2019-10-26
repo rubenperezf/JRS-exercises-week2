@@ -46,6 +46,7 @@ function myProp(object, key) {
     delete object[key]
     return object
 }
+
 console.log(myProp({ 1: "a", 2: "b" }, 2))
 
 //7 path ++++++++++++++++++++++++++++++++ Retrieve the value at a given path.
@@ -76,7 +77,6 @@ function dec(number) {
 console.log(dec(6))
 
 //10 identity 
-
 
 function myIdentity(value) {
     var type = typeof value;
@@ -247,9 +247,6 @@ console.log(myNot(4))
 
 //31 pick Returns a filtered copy of an object with only the specified keys, similar to _.pick from lodash / underscore. +++++++++++++++++++
 
-
-
-
 function myPick(object, array) {
     var arrayKeys = Object.keys(object)
     var newObject={}
@@ -269,9 +266,6 @@ console.log(myPick({ 1: 'a', 2: 'b', 3: 'c' }, ["a","b"]))
 //32  pluck The _.pluck() function is used when we need to extract a list of a given property. Like we have to find out name of all the students, then we can simply apply the _.pluck() 
 //function on the details of all the students. It will only extract the name from the details of all the stuf=dents and display it. The hence formed list will be an array of names only.
 //++++++++++++++++
-
-
-
 
 //33 sort
 
@@ -293,7 +287,22 @@ console.log(mySort([1, 3, 2]))
 
 //35 split +++++++++++++++++++++++++
 
-function mySplit
+function mySplit (string, delimiter) {
+    var emptySpaces=[0,];
+    var arrayString=[]
+    for(let i=0;i<string.length;i++) {
+        if(string[i]===delimiter) {
+            emptySpaces.push(i) 
+            console.log(emptySpaces)
+        } 
+    }         
+    for(let j =0; j<emptySpaces.length;j++) {
+        arrayString.push(string.slice(emptySpaces[j]+1 ,emptySpaces[j+1]))
+    } return arrayString    
+}
+
+console.log(mySplit("hola mujer guapa, perro"," "))
+
 
 
 //36 join
@@ -317,7 +326,7 @@ console.log(myJoin(newArray))
 //37 toUpper
 
 function myToUpper(string) {
-    let newArr = [["a", "A"], ["b", "B"], ["c", "C"], ["d", "D"], ["e", "E"], ["f", "F"], ["g", "G"], ["h", "H"], ["i", "I"], ["j", "J"], ["k", "K"], ["l", "L"], ["m", "M"], ["n", "N"], ["o", "O"], ["p", "P"], ["q", "Q"], ["r", "R"], ["s", "S"], ["t", "T"], ["u", "U"], ["v", "V"], ["w", "W"], ["x", "X"], ["y", "Y"], ["z", "Z"]]
+    let newArr = [["a", "A"], ["b", "B"], ["c", "C"], ["d", "D"], ["e", "E"], ["f", "F"], ["g", "G"], ["h", "H"], ["i", "I"], ["j", "J"], ["k", "K"], ["l", "L"], ["m", "M"], ["n", "N"], ["o", "O"], ["p", "P"], ["q", "Q"], ["r", "R"], ["s", "S"], ["t", "T"], ["u", "U"], ["v", "V"], ["w", "W"], ["x", "X"], ["y", "Y"], ["z", "Z"],[" "," "]]
     let newString = ""
     for (let i = 0; i < string.length; i++) {
         for (let j = 0; j < newArr.length; j++)
@@ -335,7 +344,7 @@ console.log(myToUpper("aBc"))
 //38 toLower
 
 function myToLower(string) {
-    let newArr = [["a", "A"], ["b", "B"], ["c", "C"], ["d", "D"], ["e", "E"], ["f", "F"], ["g", "G"], ["h", "H"], ["i", "I"], ["j", "J"], ["k", "K"], ["l", "L"], ["m", "M"], ["n", "N"], ["o", "O"], ["p", "P"], ["q", "Q"], ["r", "R"], ["s", "S"], ["t", "T"], ["u", "U"], ["v", "V"], ["w", "W"], ["x", "X"], ["y", "Y"], ["z", "Z"]]
+    let newArr = [["a", "A"], ["b", "B"], ["c", "C"], ["d", "D"], ["e", "E"], ["f", "F"], ["g", "G"], ["h", "H"], ["i", "I"], ["j", "J"], ["k", "K"], ["l", "L"], ["m", "M"], ["n", "N"], ["o", "O"], ["p", "P"], ["q", "Q"], ["r", "R"], ["s", "S"], ["t", "T"], ["u", "U"], ["v", "V"], ["w", "W"], ["x", "X"], ["y", "Y"], ["z", "Z"],[" "," "]]
     let newString = ""
     for (let i = 0; i < string.length; i++) {
         for (let j = 0; j < newArr.length; j++)
@@ -343,12 +352,12 @@ function myToLower(string) {
                 newString = newString + newArr[j][0]
             } else if (string[i] === newArr[j][0]) {
                 newString = newString + newArr[j][0]
-            }
+        } 
 
     } return newString
 }
 
-console.log(myToLower("aBc"))
+console.log(myToLower("aBc asdfkladsI"))
 
 //39 capitalize
 
@@ -360,7 +369,7 @@ function myCapitalize(string) {
         if (string[0] === newArr[i][0]) {
             newString = newString + newArr[i][1]
         }
-    } console.log(newString)
+    } 
     return newString + newString2
 }
 
@@ -527,10 +536,18 @@ function myT() {
 console.log(myT(5))
 
 
-//54 comparator
+//54 comparator Makes a comparator function out of a function that reports whether the first element is less than the second.
+
+function myComparator (object) {
+    if(object[i])
+}
 
 
-
+const people = [
+    { name: 'Emma', age: 70 },
+    { name: 'Peter', age: 78 },
+    { name: 'Mikhail', age: 62 },
+  ];
 //Map
 //https://github.com/jrs-innovation-center/javascript-exercises/blob/master/map/index.md
 
@@ -615,25 +632,68 @@ console.log(convertToObject(data))
 //function concat(...args) {
   // TODO: add reduce here
 
-function myConcat (ar)
+  function concat (...args) {
+    var newArray = args.reduce((prev, curr) => prev.concat(curr), []);
+    return newArray
+     
+  }
+
+  console.log(concat([0,1,2],[1,2,3],[0,1]))
 
   //5. Use reduce to create your own filter function
   //function filter (fn, list) {
     // TODO: use reduce to create your own filter
-  
-  // filter to even numbers
+     // filter to even numbers
+     //filter(v => v % 2 === 0, [1,2,3,4,5,6,7,8,9,10])
+
+    function myFilter(fn, list) {
+        return list.reduce( function (result, item) {
+          if (fn(item)) {
+            result.push(item);
+            return result;
+          }
+          return result
+        }, []);
+      } 
+
+      console.log(myFilter(v => v % 2 === 0, [1,2,3,4,5,6,7,8,9,10]))
+
   //6. Use reduce to create your own reject function
   //function reject (fn, list) {
  // }
-  
-  
-  // reject even numbers
- // reject(v => v % 2 === 0, [1,2,3,4,5,6,7,8,9,10])
-//7. Use reduce to create your own find function
-//function find (fn, list) {
-//}
-// find waldo
+   // reject even numbers
+   // reject(v => v % 2 === 0, [1,2,3,4,5,6,7,8,9,10])
 
+   function myReject(fn, list) {
+    return list.reduce( function (result, item) {
+      if (fn(item)===false) {
+        result.push(item);
+        return result;
+      }
+      return result
+    }, []);
+  } 
+
+  console.log(myReject(v => v % 2 === 0, [1,2,3,4,5,6,7,8,9,10]))
+
+
+//7. Use reduce to create your own find function
+//function find (fn, list) {}
+// find waldo
+//find(v => v === 'waldo', ['Larry', 'Curly', 'Moe', 'Waldo', 'Jim', 'Harry'])
+
+function myFind(fn, list) {
+    return list.reduce( function (result, item) {
+      if (fn(item)) {
+        result.push(item);
+        return result;
+      }
+      return result
+    }, []);
+  } 
+  console.log(myFind(v => v>10, [5, 12, 8, 130, 44]));
+  console.log(myFind(v => v === 'Waldo', ['Larry', 'Curly', 'Moe', 'Waldo', 'Jim', 'Harry']))
+  
 
 
 
