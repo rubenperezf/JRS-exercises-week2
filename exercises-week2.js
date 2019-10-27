@@ -1,5 +1,6 @@
 //Callback canyon
 //https://github.com/twilson63/callback-canyon
+
 //1 equals
 
 function equals(a, b) {
@@ -53,7 +54,15 @@ console.log(myProp({ 1: "a", 2: "b" }, 2))
 //R.path(['a', 'b'], {a: {b: 2}}); //=> 2
 //R.path(['a', 'b'], {c: {b: 2}}); //=> undefined
 
+    function myPath (array, object) {
+        var a=[a];
+        var b=[b]
+        var object.push(a)
+        return object;
+    }
+    console.log(myPath({}))
 
+console.log(myPath(['a', 'b'], {a: {b: 2}})); 
 //8 inc
 
 function add(num1, num2) {
@@ -65,6 +74,7 @@ function inc(number) {
 }
 
 console.log(inc(8))
+
 
 //9 dec
 
@@ -141,6 +151,7 @@ console.log(ite("a", "b"))
 
 function mySplit(string) {
     var newArray = []
+    
     var newArray2 = []
     for (let i = 0; i < string.length; i++) {
         if (string[i] === " ") {
@@ -148,15 +159,15 @@ function mySplit(string) {
         }
 
     } newArray.push(string.length)
-    for (let j = 0; j < newArray.length; j++) {
-        newArray2.push(string.slice(newArray[j - 1], newArray[j]))
+    newArray2.push(string.slice(0,newArray[0]));
+    for (let j = 0; j < newArray.length-1; j++) {
+        newArray2.push(string.slice(newArray[j]+1, newArray[j+1]))
     } return newArray2
-
-
 }
 
 var newString = "hola maria que tal"
 console.log(mySplit(newString))
+
 
 //17 join
 
@@ -234,6 +245,7 @@ console.log(myLast([1, 2, 3, 4, 5]))
 //24 match The match() method retrieves the result of matching a string against a regular expression. WE DONT NOW WHAT A REGULAR EXPRESSION IS
 //25 memoize IS NOT IN THE RANDA LIBRARY
 
+
 //26 not
 
 function myNot(value) {
@@ -287,9 +299,26 @@ console.log(mySort([1, 3, 2]))
 
 //34 sortBy
 
-//35 split +++++++++++++++++++++++++
+//35 split 
 
 function mySplit (string, delimiter) {
+    var stringArray = [''];
+    var j = 0;
+
+    for (var i = 0; i < string.length; i++) {
+        if (string.charAt(i) == delimiter) {
+            j++;
+            stringArray.push('');
+        } else {
+            stringArray[j] += string.charAt(i);
+        }
+    }
+    return stringArray;
+}
+
+console.log(mySplit("hola mujer guapa, perro"," "))
+
+function mySplit2 (string, delimiter) {
     var emptySpaces=[0,];
     var arrayString=[]
     for(let i=0;i<string.length;i++) {
@@ -303,9 +332,7 @@ function mySplit (string, delimiter) {
     } return arrayString    
 }
 
-console.log(mySplit("hola mujer guapa, perro"," "))
-
-
+console.log(mySplit2("hola mujer guapa, perro"," "))
 
 //36 join
 
@@ -487,13 +514,35 @@ console.log(myTest("hola", "oila"))
 
 //48 replace
 
-var newString1 = "hola guapa";
-var newString2 = "guapa";
-var newString3 = "fea";
 function myReplace(string1, string2, string3) {
+    var newArray = []
+    var newArray2 = []
+    newArray3 =[]
+    for (let i = 0; i < string1.length; i++) {
+        if (string1[i] === " ") {
+            newArray.push(i)
+        }
 
+    } newArray.push(string1.length)
+    newArray2.push(string1.slice(0,newArray[0]));
+    for (let j = 0; j < newArray.length-1; j++) {
+        newArray2.push(string1.slice(newArray[j]+1, newArray[j+1]))
+        } console.log(newArray2)
+        for(let k=0;k<newArray2.length;k++) {
+            if(newArray2[k]!=string2) {
+                newArray3.push(newArray2[k])
+            } else {
+                newArray3.push(string3)
+            }
+        } return newArray3
+    
+    }
+    
+    var newString = "hola maria que tal"
+    console.log(myReplace(newString,'maria','lola'))
 
 }
+
 //49 range
 
 function myRange(start, end) {
@@ -733,6 +782,7 @@ function factorial(n) {
     return n * factorial(n - 1)
 }
 console.log(factorial(10))
+
 //2. Write a JavaScript program to find the greatest common divisor (gcd) of two positive numbers.
 
 function gcd(num1, num2) {
