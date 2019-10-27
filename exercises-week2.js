@@ -63,6 +63,7 @@ console.log(myProp({ 1: "a", 2: "b" }, 2))
     console.log(myPath({}))
 
 console.log(myPath(['a', 'b'], {a: {b: 2}})); 
+
 //8 inc
 
 function add(num1, num2) {
@@ -74,7 +75,6 @@ function inc(number) {
 }
 
 console.log(inc(8))
-
 
 //9 dec
 
@@ -168,7 +168,6 @@ function mySplit(string) {
 var newString = "hola maria que tal"
 console.log(mySplit(newString))
 
-
 //17 join
 
 function join(array) {
@@ -245,7 +244,6 @@ console.log(myLast([1, 2, 3, 4, 5]))
 //24 match The match() method retrieves the result of matching a string against a regular expression. WE DONT NOW WHAT A REGULAR EXPRESSION IS
 //25 memoize IS NOT IN THE RANDA LIBRARY
 
-
 //26 not
 
 function myNot(value) {
@@ -274,8 +272,6 @@ function myPick(object, array) {
 }
 
 console.log(myPick({ 1: 'a', 2: 'b', 3: 'c' }, ["a","b"]))
-
-
 
 //32  pluck The _.pluck() function is used when we need to extract a list of a given property. Like we have to find out name of all the students, then we can simply apply the _.pluck() 
 //function on the details of all the students. It will only extract the name from the details of all the stuf=dents and display it. The hence formed list will be an array of names only.
@@ -440,7 +436,6 @@ function fromPairs (array) {
 
 console.log(fromPairs(newArray))
 
-
 //43 toPairs
 
 var newObject = { a: 1, b: 2, c: 3, d: 4 }
@@ -468,24 +463,19 @@ console.log(myZip(array1,array2))
 
 //45 union Union of arrays would represent a new array combining all elements of the input arrays, without repetition of elements.
 
-var newArray1 = [1, 2]
-var newArray2 = [1, 4]
-var newArray5 = [1, 6]
-
-
-
-function myUnion() {
-    var newArray = newArray1.concat(newArray2, newArray5)
+function myUnion(array1,array2,array3) {
+    var newArray = newArray1.concat(newArray2, newArray3)
     var newObject = {};
-    var newArray3 = []
     for (var i = 0; i < newArray.length; ++i) {
         newObject[newArray[i]] = '';
     }
     newArray = Object.keys(newObject)
     return newArray
 }
-
-console.log(myUnion(newArray1))
+var newArray1 = [1, 2]
+var newArray2 = [1, 4]
+var newArray3 = [1, 6]
+console.log(myUnion(newArray1,newArray2,newArray3))
 
 //46 intersection intersection([1,2,3], [2,3,4,5]) => [2, 3]
 
@@ -502,7 +492,6 @@ function myIntersection (array1, array2) {
         } return newArray
     }
 console.log(myIntersection(rubenArray, caseyArray))
-
 
 //47test
 
@@ -527,21 +516,18 @@ function myReplace(string1, string2, string3) {
     newArray2.push(string1.slice(0,newArray[0]));
     for (let j = 0; j < newArray.length-1; j++) {
         newArray2.push(string1.slice(newArray[j]+1, newArray[j+1]))
-        } console.log(newArray2)
-        for(let k=0;k<newArray2.length;k++) {
+        } for(let k=0;k<newArray2.length;k++) {
             if(newArray2[k]!=string2) {
                 newArray3.push(newArray2[k])
             } else {
                 newArray3.push(string3)
             }
-        } return newArray3
+        } return newArray3.join(" ")
     
     }
     
     var newString = "hola maria que tal"
     console.log(myReplace(newString,'maria','lola'))
-
-}
 
 //49 range
 
@@ -566,9 +552,7 @@ function myOmit (object,key) {
 
 console.log(myOmit(newObject,"name"))
 
-
 //51 where
-
 
 //52 T 
 
@@ -586,19 +570,7 @@ function myT() {
 
 console.log(myT(5))
 
-
 //54 comparator Makes a comparator function out of a function that reports whether the first element is less than the second.
-
-function myComparator (object) {
-    if(object[i])
-}
-
-
-const people = [
-    { name: 'Emma', age: 70 },
-    { name: 'Peter', age: 78 },
-    { name: 'Mikhail', age: 62 },
-  ];
 
 //Map
 //https://github.com/jrs-innovation-center/javascript-exercises/blob/master/map/index.md
@@ -623,14 +595,12 @@ console.log(numbers.map(element => { return element + 10 }))
 //an unordered list
 //hyperscript docs
 
-var newArray = ["a", "b", "c"]
 const h = require('hyperscript')
 const buzzwords = require('buzzwords')
 const li = (w) => h('li', w)
+console.log(buzzwords.map(element => { return  h('li', element).outerHTML }))
+console.log(h('ul',(buzzwords.map(element => { return  h('li', element).outerHTML }))))
 
-console.log(newArray.map(element => { return  h('li', element).outerHTML }))
-
-console.log(h('ul', __))
 
 //4. Use the map function to convert a list of colors to their rgb code.
 
@@ -642,54 +612,44 @@ console.log(cssColorList().map(element => { return convert.keyword.rgb(element) 
 //5. Use the map function transform a list of movies objects from a movie
 //db search into a list of movie posters.
 
-const h = require('hyperscript')
-const request = require('request')
-const search = (query, callback) => {
-request({
-method: 'GET',
-json: true,
-url: 'http://www.omdbapi.com/?r=json&s=' + query
-}, (e,r,b) => callback(e,b))
-}
-
-
-const img = (url) => h('img', {src: url})
-
-
-search('batman', (e,b) => {
-// map over results and show movie posters
-
-})
-
-
-
 //Filter
 //https://github.com/jrs-innovation-center/javascript-exercises/blob/master/filter/index.md
 
 //1. Show only even numbers
+
 const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
 console.log(numbers.filter(element => { return element % 2 === 0 }))
 
 
 //2. Show only numbers divisible by 5
+
 const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+
 console.log(numbers.filter(element => { return element % 5 === 0 }))
 
 //3.3. Filter all buzzwords that contains cloud, html, and data
+
 const h = require('hyperscript')
 const buzzwords = require('buzzwords')
+
 console.log(buzzwords.filter(element => { return element.includes("cloud") + element.includes("data") + element.includes("html") }))
 
 //Reduce
 //https://github.com/jrs-innovation-center/javascript-exercises/blob/master/reduce2/index.md
 
 //1. Use reduce to add the list of numbers together and return the sum.
+
 const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 20, 30, 99]
+
 console.log(numbers.reduce((acc, item) => { return acc + item }));
 
 //2. Use reduce to count the number of items that are true
+
 const items = [false, true, false, true, true, true]
+
 console.log(items.reduce((acc, item) => { return acc + item }));
+
 console.log(items.length - (items.reduce((acc, item) => { return acc + item })));
 
 //3. Use reduce to return an object of key value pairs from paired arrays,
@@ -702,6 +662,7 @@ function convertToObject (array) {
     }, {});
 }
 const data = [['name', 'Larry'], ['type', 'person'], ['address', '123 Main Street']]
+
 console.log(convertToObject(data))
 
 //4. Use reduce to concat a variadic set of arguments into a single list
@@ -752,7 +713,6 @@ console.log(convertToObject(data))
 
   console.log(myReject(v => v % 2 === 0, [1,2,3,4,5,6,7,8,9,10]))
 
-
 //7. Use reduce to create your own find function
 //function find (fn, list) {}
 // find waldo
@@ -767,6 +727,7 @@ function myFind(fn, list) {
       return result
     }, []);
   } 
+
   console.log(myFind(v => v>10, [5, 12, 8, 130, 44]));
   console.log(myFind(v => v === 'Waldo', ['Larry', 'Curly', 'Moe', 'Waldo', 'Jim', 'Harry']))
   
@@ -775,12 +736,14 @@ function myFind(fn, list) {
 
 //1. Write a JavaScript program to calculate the factorial of a number.
 //In mathematics, the factorial of a non-negative integer n, denoted by n!, is the product of all positive integers less than or equal to n. For example, 5! = 5 x 4 x 3 x 2 x 1 = 120
+
 function factorial(n) {
     if (n <= 1) {
         return n;
     }
     return n * factorial(n - 1)
 }
+
 console.log(factorial(10))
 
 //2. Write a JavaScript program to find the greatest common divisor (gcd) of two positive numbers.
@@ -794,6 +757,7 @@ function gcd(num1, num2) {
     } return newArray[newArray.length - 1]
 
 }
+
 console.log(gcd(2, 4))
 
 function gcd2(num1, num2) {
@@ -803,12 +767,10 @@ function gcd2(num1, num2) {
 }
 console.log(gcd2(36, 60))
 
-
-
-
 //3. Write a JavaScript program to get the integers in range (x, y).
 //Example : range(2, 9)
 //Expected Output : [3, 4, 5, 6, 7, 8]
+
 function range2(x, y) {
     let newArray = []
     for (let i = 1; i < y; i++) {
@@ -816,6 +778,7 @@ function range2(x, y) {
     }
     return newArray
 }
+
 console.log(range2(2, 9))
 
 function range(x, y) {
@@ -828,6 +791,7 @@ function range(x, y) {
     }
 
 }
+
 console.log(range(2, 89))
 
 //4. Write a JavaScript program to compute the sum of an array of integers.
@@ -840,6 +804,7 @@ function sumArray(array) {
         sum = sum + array[i]
     } return sum
 }
+
 console.log(sumArray([1, 2, 3, 4, 5, 6]))
 
 function sumArray2(array) {
@@ -847,6 +812,7 @@ function sumArray2(array) {
         return array[0]
     } return array.pop() + sumArray2(array)
 }
+
 console.log(sumArray2([1, 2, 3, 4, 5]))
 
 function sumArray2(array) {
@@ -854,6 +820,7 @@ function sumArray2(array) {
         return array[0]
     } return array[0] + sumArray2(array.slice(1, array.length));
 }
+
 console.log(sumArray2([1, 2, 3, 4, 5]))
 
 //5. Write a JavaScript program to compute the exponent of a number.
@@ -865,6 +832,7 @@ function exponent(base, exp) {
         count *= base
     } return count
 }
+
 console.log(exponent(2, 2))
 
 function exponent2(base, exp) {
@@ -877,12 +845,14 @@ console.log(exponent2(8, 2))
 
 //6. Write a JavaScript program to get the first n Fibonacci numbers.
 //Note : The Fibonacci Sequence is the series of numbers: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, . . . Each subsequent number is the sum of the previous two.
+
 function fibonacci(num) {
     if (num <= 1)
         return 1;
 
     return fibonacci(num - 1) + fibonacci(num - 2);
 }
+
 console.log(fibonacci(5))
 
 //7. Write a JavaScript program to check whether a number is even or not.
@@ -894,6 +864,7 @@ function isEven(num) {
         return false
     }
 }
+
 console.log(isEven(91))
 
 function isEven2(num) {
@@ -904,15 +875,14 @@ function isEven2(num) {
         return false;
     } return isEven2(num - 2)
 }
+
 console.log(isEven2(0))
 
 //8. Write a JavaScript program for binary search. Go to the editor
 //Sample array : [0,1,2,3,4,5,6]
 //console.log(l.br_search(5)) will return '5' mirar khan academy
 
-var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 44, 55];
-
-function miBinarySearch(arr, searchNumb) {
+function myBinarySearch(arr, searchNumb) {
     var length = arr.length;
     var midPoint = Math.floor(length / 2);
     var newArr = arr;
@@ -920,18 +890,20 @@ function miBinarySearch(arr, searchNumb) {
     if (arr[midPoint] > searchNumb) {
 
         var newArr = arr.slice(0, midPoint);
-        return miBinarySearch(newArr, searchNumb);
+        return myBinarySearch(newArr, searchNumb);
 
     } else if (arr[midPoint] < searchNumb) {
 
         var newArr = arr.slice(midPoint+1, arr.length);
-        return miBinarySearch(newArr, searchNumb);
+        return myBinarySearch(newArr, searchNumb);
 
     } else {
         return arr[midPoint];
     }
 }
-console.log(miBinarySearch(arr,2))
+
+var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 44, 55];
+console.log(myBinarySearch(arr,2))
 
 //9. Write a merge sort program in JavaScript.
 //Sample array : [34,7,23,32,5,62]
@@ -949,6 +921,7 @@ function sort(array) {
     }
     return array;
 }
+
 console.log(sort([1, 2, 3, 6, 4]))
 
 function mySort (arr, end=0) {
