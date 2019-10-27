@@ -52,6 +52,8 @@ console.log(myProp({ 1: "a", 2: "b" }, 2))
 //7 path ++++++++++++++++++++++++++++++++ Retrieve the value at a given path.
 //R.path(['a', 'b'], {a: {b: 2}}); //=> 2
 //R.path(['a', 'b'], {c: {b: 2}}); //=> undefined
+
+
 //8 inc
 
 function add(num1, num2) {
@@ -548,44 +550,69 @@ const people = [
     { name: 'Peter', age: 78 },
     { name: 'Mikhail', age: 62 },
   ];
+
 //Map
 //https://github.com/jrs-innovation-center/javascript-exercises/blob/master/map/index.md
 
 //1. Use the number to words module and map, to transform this
 //array of number to array of words
+//const converter = require('number-to-words')
+//console.log(converter.toWords(10)) // ten
 
-const converter = require('number-to-words')
-console.log(converter.toWords(10)) // ten
 const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 20, 30, 99, -2]
 const converter = require('number-to-words')
+
 console.log(numbers.map(element => { return converter.toWords(element) }))
 
-
-
 //2. Use the map function to add 10 to array of numbers
+
 const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 20, 30, 99, -2]
+
 console.log(numbers.map(element => { return element + 10 }))
 
 //3. Use the map function and hyperscript to tranform a list of strings to
 //an unordered list
 //hyperscript docs
+
 var newArray = ["a", "b", "c"]
 const h = require('hyperscript')
 const buzzwords = require('buzzwords')
 const li = (w) => h('li', w)
-console.log(newArray.map(element => { return h('ul', h('li', element).outerHTML) }))
+
+console.log(newArray.map(element => { return  h('li', element).outerHTML }))
 
 console.log(h('ul', __))
 
-
-
 //4. Use the map function to convert a list of colors to their rgb code.
 
-var listColor = ['yellow', 'blue', 'red']
 const convert = require('color-convert')
 const cssColorList = require('css-color-list')
 
 console.log(cssColorList().map(element => { return convert.keyword.rgb(element) }))
+
+//5. Use the map function transform a list of movies objects from a movie
+//db search into a list of movie posters.
+
+const h = require('hyperscript')
+const request = require('request')
+const search = (query, callback) => {
+request({
+method: 'GET',
+json: true,
+url: 'http://www.omdbapi.com/?r=json&s=' + query
+}, (e,r,b) => callback(e,b))
+}
+
+
+const img = (url) => h('img', {src: url})
+
+
+search('batman', (e,b) => {
+// map over results and show movie posters
+
+})
+
+
 
 //Filter
 //https://github.com/jrs-innovation-center/javascript-exercises/blob/master/filter/index.md
@@ -694,10 +721,6 @@ function myFind(fn, list) {
   console.log(myFind(v => v>10, [5, 12, 8, 130, 44]));
   console.log(myFind(v => v === 'Waldo', ['Larry', 'Curly', 'Moe', 'Waldo', 'Jim', 'Harry']))
   
-
-
-
-
 //Recursion
 //https://github.com/jrs-innovation-center/javascript-exercises/blob/master/recursion/index.md
 
@@ -756,8 +779,6 @@ function range(x, y) {
 
 }
 console.log(range(2, 89))
-
-
 
 //4. Write a JavaScript program to compute the sum of an array of integers.
 //Example : var array = [1, 2, 3, 4, 5, 6]
@@ -839,13 +860,32 @@ console.log(isEven2(0))
 //Sample array : [0,1,2,3,4,5,6]
 //console.log(l.br_search(5)) will return '5' mirar khan academy
 
+var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 44, 55];
 
+function miBinarySearch(arr, searchNumb) {
+    var length = arr.length;
+    var midPoint = Math.floor(length / 2);
+    var newArr = arr;
+
+    if (arr[midPoint] > searchNumb) {
+
+        var newArr = arr.slice(0, midPoint);
+        return miBinarySearch(newArr, searchNumb);
+
+    } else if (arr[midPoint] < searchNumb) {
+
+        var newArr = arr.slice(midPoint+1, arr.length);
+        return miBinarySearch(newArr, searchNumb);
+
+    } else {
+        return arr[midPoint];
+    }
+}
+console.log(miBinarySearch(arr,2))
 
 //9. Write a merge sort program in JavaScript.
 //Sample array : [34,7,23,32,5,62]
 //Sample output : [5, 7, 23, 32, 34, 62]
-
-
 
 function sort(array) {
     for (var i = 0; i < array.length; i++) {
@@ -861,12 +901,19 @@ function sort(array) {
 }
 console.log(sort([1, 2, 3, 6, 4]))
 
+function mySort (arr, end=0) {
+  if (end >= arr.length) {
+    return arr;
+  }
+  for (let i = 0; i < arr.length - 1; i++) {
+    if (arr[i] > arr[i + 1]) {
+      let swap = arr[i + 1];
+      arr[i + 1] = arr[i];
+      arr[i] = swap;
+    }
+  }
 
-
-function sortRecursive(array) {
-    var newArray = []
-    if (Math.min(...array) === array[0]) {
-        return newArray.push(array[0])
-    } return array[0] + newArray.push(sortRecursive(array.slice(1, array.length)))
+  return mySort(arr, ++end);
 }
-console.log(sortRecursive([2, 1, 3]))
+
+console.log(mySort([6, 1, 5, 3, 9, 6, 7, 10, 16, 4, 0, 12, 2]));
