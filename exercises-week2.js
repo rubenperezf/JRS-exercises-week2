@@ -91,11 +91,13 @@ console.log(myIdentity(9))
 
 //11 allways 
 
-function myAllways(value) {
-    return value
-}
+function myAlways(value) {
+    return function() {
+      return value
+    }
+  }
 
-console.log(myAllways(5))
+console.log(myAlways(5))
 
 //12 gt
 
