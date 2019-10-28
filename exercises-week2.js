@@ -54,6 +54,7 @@ console.log(myProp({ 1: "a", 2: "b" }, 2))
 //R.path(['a', 'b'], {a: {b: 2}}); //=> 2
 //R.path(['a', 'b'], {c: {b: 2}}); //=> undefined
 
+
 //8 inc
 
 function add(num1, num2) {
@@ -80,10 +81,11 @@ console.log(dec(6))
 
 //10 identity 
 
-function myIdentity(value) {
-    var type = typeof value;
-    return type 
-}
+function myIdentity() {
+    return function(value) {
+      return value
+    }
+  }
 
 console.log(myIdentity(9))
 
@@ -401,7 +403,7 @@ function myCapitalize(string) {
     return newString + newString2
 }
 
-console.log(myCapitalize("iop asdfasd a sdfadsf asdfdsf"))
+console.log(myCapitalize("pop asdfasd a sdfadsf asdfdsf"))
 
 //40 take quita todo hasta cierto elementeo
 
