@@ -54,16 +54,6 @@ console.log(myProp({ 1: "a", 2: "b" }, 2))
 //R.path(['a', 'b'], {a: {b: 2}}); //=> 2
 //R.path(['a', 'b'], {c: {b: 2}}); //=> undefined
 
-    function myPath (array, object) {
-        var a=[a];
-        var b=[b]
-        var object.push(a)
-        return object;
-    }
-    console.log(myPath({}))
-
-console.log(myPath(['a', 'b'], {a: {b: 2}})); 
-
 //8 inc
 
 function add(num1, num2) {
@@ -295,6 +285,19 @@ console.log(mySort([1, 3, 2]))
 
 //34 sortBy
 
+function mySortBy(fn, array) {
+    for (var i = 0; i < array.length; i++) {
+        for (var j = i + 1; j < array.length; j++) {
+            if (array[i] > array[j]) {
+                var swap = array[i];
+                array[i] = array[j];
+                array[j] = swap;
+            }
+        }
+    }
+    return fn(array);
+}
+
 //35 split 
 
 function mySplit (string, delimiter) {
@@ -351,7 +354,7 @@ console.log(myJoin(newArray))
 //37 toUpper
 
 function myToUpper(string) {
-    let newArr = [["a", "A"], ["b", "B"], ["c", "C"], ["d", "D"], ["e", "E"], ["f", "F"], ["g", "G"], ["h", "H"], ["i", "I"], ["j", "J"], ["k", "K"], ["l", "L"], ["m", "M"], ["n", "N"], ["o", "O"], ["p", "P"], ["q", "Q"], ["r", "R"], ["s", "S"], ["t", "T"], ["u", "U"], ["v", "V"], ["w", "W"], ["x", "X"], ["y", "Y"], ["z", "Z"],[" "," "]]
+    let newArr = [["a", "A"], ["b", "B"], ["c", "C"], ["d", "D"], ["e", "E"], ["f", "F"], ["g", "G"], ["h", "H"], ["i", "I"], ["j", "J"], ["k", "K"], ["l", "L"], ["m", "M"], ["n", "N"], ["o", "O"], ["p", "P"], ["q", "Q"], ["r", "R"], ["s", "S"], ["t", "T"], ["u", "U"], ["v", "V"], ["w", "W"], ["x", "X"], ["y", "Y"], ["z", "Z"],[" "," "],["1","1"],["2","2"],["3","3"],["4","4"],["5","5"],["6","6"],["7","7"],["8","8"],["9","9"], [",",","],[".","."],["?","?"],[";",";"]]
     let newString = ""
     for (let i = 0; i < string.length; i++) {
         for (let j = 0; j < newArr.length; j++)
@@ -364,12 +367,12 @@ function myToUpper(string) {
     } return newString
 }
 
-console.log(myToUpper("aBc"))
+console.log(myToUpper("aBc1 34.,"))
 
 //38 toLower
 
 function myToLower(string) {
-    let newArr = [["a", "A"], ["b", "B"], ["c", "C"], ["d", "D"], ["e", "E"], ["f", "F"], ["g", "G"], ["h", "H"], ["i", "I"], ["j", "J"], ["k", "K"], ["l", "L"], ["m", "M"], ["n", "N"], ["o", "O"], ["p", "P"], ["q", "Q"], ["r", "R"], ["s", "S"], ["t", "T"], ["u", "U"], ["v", "V"], ["w", "W"], ["x", "X"], ["y", "Y"], ["z", "Z"],[" "," "]]
+    let newArr = [["a", "A"], ["b", "B"], ["c", "C"], ["d", "D"], ["e", "E"], ["f", "F"], ["g", "G"], ["h", "H"], ["i", "I"], ["j", "J"], ["k", "K"], ["l", "L"], ["m", "M"], ["n", "N"], ["o", "O"], ["p", "P"], ["q", "Q"], ["r", "R"], ["s", "S"], ["t", "T"], ["u", "U"], ["v", "V"], ["w", "W"], ["x", "X"], ["y", "Y"], ["z", "Z"],[" "," "],["1","1"],["2","2"],["3","3"],["4","4"],["5","5"],["6","6"],["7","7"],["8","8"],["9","9"], [",",","],[".","."],["?","?"],[";",";"]]
     let newString = ""
     for (let i = 0; i < string.length; i++) {
         for (let j = 0; j < newArr.length; j++)
@@ -463,25 +466,21 @@ console.log(myZip(array1,array2))
 
 //45 union Union of arrays would represent a new array combining all elements of the input arrays, without repetition of elements.
 
-function myUnion(array1,array2,array3) {
-    var newArray = newArray1.concat(newArray2, newArray3)
+function myUnion(arr) {
+    const newArray = [].concat(...arr);
+    console.log(newArray)
+    var newArray2=[]
     var newObject = {};
     for (var i = 0; i < newArray.length; ++i) {
         newObject[newArray[i]] = '';
     }
-    newArray = Object.keys(newObject)
-    return newArray
+    newArray2 = Object.keys(newObject)
+    return newArray2
 }
-var newArray1 = [1, 2]
-var newArray2 = [1, 4]
-var newArray3 = [1, 6]
-console.log(myUnion(newArray1,newArray2,newArray3))
+
+console.log(myUnion([[1,2],[1,4],[1,6]]))
 
 //46 intersection intersection([1,2,3], [2,3,4,5]) => [2, 3]
-
-var rubenArray =[1,2,3,4,5];
-var caseyArray = [1,5,6,7];
-
 
 function myIntersection (array1, array2) {
     var newArray=[]
@@ -491,6 +490,9 @@ function myIntersection (array1, array2) {
             }
         } return newArray
     }
+
+var rubenArray =[1,2,3,4,5];
+var caseyArray = [1,5,6,7];
 console.log(myIntersection(rubenArray, caseyArray))
 
 //47test
@@ -553,6 +555,7 @@ function myOmit (object,key) {
 console.log(myOmit(newObject,"name"))
 
 //51 where
+
 
 //52 T 
 
